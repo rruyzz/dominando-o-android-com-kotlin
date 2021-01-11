@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Adapter</string>
+    <string name="fuel_gasoline">Gasolina</string>
+    <string name="fuel_ethanol">Etanol</string>
+    <string name="fuel_flex">Flex</string>
+    <string name="fuel_invalid">Nao informado</string>
+    <string name="header_text">Carros</string>
+    <string name="no_vehicles">NEnhum carro cadastrado</string>
+
+    <plurals name="footer_text">
+        <item quantity="one">1 carro</item>
+        <item quantity="other">%d carros</item>
+    </plurals>
+</resources>
