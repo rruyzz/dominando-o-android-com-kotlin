@@ -13,13 +13,16 @@ import dominando.android.fragments.classes.Hotel
 import dominando.android.fragments.fragments.HotelDetailFragments
 import dominando.android.fragments.fragments.HotelFormFragment
 import dominando.android.fragments.fragments.HotelListFragment
+import kotlinx.android.synthetic.main.activity_hotel.*
 
 class MainActivity : AppCompatActivity(),
         HotelListFragment.OnHotelClickListener,
+        HotelListFragment.OnHotelDeletedListener,
         SearchView.OnQueryTextListener,
         MenuItem.OnActionExpandListener,
         HotelFormFragment.OnHotelSavedListener{
 
+    private var hotelIdSelected: Long = -1
     private var lastSearchTerm : String = ""
     private var searchView: SearchView? = null
 
@@ -29,15 +32,21 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hotel)
+        fabAdd.setOnClickListener {
+            listFragment.hideDeleteMode()
+            HotelFormFragment.newInstance().open(supportFragmentManager)
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        outState.putLong(EXTRA_HOTEL_ID_SELECTED, hotelIdSelected)
         outState.putString(EXTRA_SEARCH_TERM, lastSearchTerm)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
+        hotelIdSelected = savedInstanceState.getLong(EXTRA_HOTEL_ID_SELECTED) ?: 0
         lastSearchTerm = savedInstanceState.getString(EXTRA_SEARCH_TERM) ?: ""
 
     }
@@ -45,6 +54,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onHotelClick(hotel: Hotel) {
         if (isTablet()){
+            hotelIdSelected = hotel.id
             showDetailsFragment(hotel.id)
         } else {
             showDetailsActivity(hotel.id)
@@ -85,8 +95,8 @@ class MainActivity : AppCompatActivity(),
         when(item?.itemId){
             R.id.action_info ->
                 AboutDialogFragment().show(supportFragmentManager, "sobre")
-            R.id.action_new ->
-                HotelFormFragment.newInstance().open(supportFragmentManager)
+//            R.id.action_new ->
+//                HotelFormFragment.newInstance().open(supportFragmentManager)
         }
         return super.onOptionsItemSelected(item)
     }
@@ -110,7 +120,21 @@ class MainActivity : AppCompatActivity(),
         listFragment.clearSearch()
         return true
     }
+
+    override fun onHotelsDeleted(hotels: List<Hotel>) {
+        if(hotels.find{ it.id == hotelIdSelected } != null) {
+            val fragment = supportFragmentManager.findFragmentByTag(
+                HotelDetailFragments.TAG_DATAILS)
+            if(fragment !=null){
+                supportFragmentManager
+                    .beginTransaction()
+                    .remove(fragment)
+                    .commit()
+            }
+        }
+    }
     companion object {
         const val EXTRA_SEARCH_TERM = "lastSearch"
+        const val EXTRA_HOTEL_ID_SELECTED = "lasteSelectedId"
     }
 }
