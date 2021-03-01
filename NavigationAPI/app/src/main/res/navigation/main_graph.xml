@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.navigationapi.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_completeFragment"
+            app:destination="@id/completeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completeFragment"
+        android:name="com.example.navigationapi.CompleteFragment"
+        android:label="CompleteFragment" >
+        <argument
+            android:name="full_name"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="integer" />
+    </fragment>
+</navigation>
