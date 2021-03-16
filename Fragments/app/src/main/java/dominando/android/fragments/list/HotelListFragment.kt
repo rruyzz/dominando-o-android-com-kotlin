@@ -1,4 +1,4 @@
-package dominando.android.fragments.fragments
+package dominando.android.fragments.list
 
 import android.os.Bundle
 import android.view.Menu
@@ -12,15 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.ListFragment
 import com.google.android.material.snackbar.Snackbar
-import dominando.android.fragments.MemoryRepository
+import dominando.android.fragments.repository.memory.MemoryRepository
 import dominando.android.fragments.R
-import dominando.android.fragments.classes.Hotel
-import dominando.android.fragments.classes.HotelListPresenter
-import dominando.android.fragments.interfaces.HotelListView
+import dominando.android.fragments.model.Hotel
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-class HotelListFragment : ListFragment(), HotelListView, AdapterView.OnItemLongClickListener,
+class HotelListFragment : ListFragment(),
+    HotelListView, AdapterView.OnItemLongClickListener,
     ActionMode.Callback {
-    private val presenter = HotelListPresenter(this, MemoryRepository)
+    private val presenter : HotelListPresenter by inject { parametersOf(this) }
     private var actionMode: ActionMode? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -1,6 +1,6 @@
-package dominando.android.fragments.interfaces
+package dominando.android.fragments.repository
 
-import dominando.android.fragments.classes.Hotel
+import dominando.android.fragments.model.Hotel
 
 interface HotelRepository {
     fun save(hotel: Hotel)

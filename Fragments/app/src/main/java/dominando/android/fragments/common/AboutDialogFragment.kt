@@ -1,4 +1,4 @@
-package dominando.android.fragments.classes
+package dominando.android.fragments.common
 
 import android.app.AlertDialog
 import android.app.Dialog

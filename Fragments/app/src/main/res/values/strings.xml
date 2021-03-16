@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fragments</string>
+    <string name="app_name">Hoteis</string>
     <string name="error_hotel_not_found">Hotel nao encontrado</string>
     <string name="action_search">Pesquisar</string>
     <string name="action_new_hotel">Novo Hotel</string>

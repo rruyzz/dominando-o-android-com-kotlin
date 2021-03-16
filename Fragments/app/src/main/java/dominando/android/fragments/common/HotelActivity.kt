@@ -1,7 +1,8 @@
-package dominando.android.fragments
+package dominando.android.fragments.common
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import dominando.android.fragments.R
 
 class HotelActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

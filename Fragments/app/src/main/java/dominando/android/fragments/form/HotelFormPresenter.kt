@@ -1,12 +1,12 @@
-package dominando.android.fragments.classes
+package dominando.android.fragments.form
 
-import dominando.android.fragments.interfaces.HotelFormView
-import dominando.android.fragments.interfaces.HotelRepository
+import dominando.android.fragments.model.Hotel
+import dominando.android.fragments.repository.HotelRepository
 import java.lang.Exception
 
 class HotelFormPresenter(
-        private val view: HotelFormView,
-        private val repository: HotelRepository
+    private val view: HotelFormView,
+    private val repository: HotelRepository
 ){
     private val validator= HotelValidator()
 

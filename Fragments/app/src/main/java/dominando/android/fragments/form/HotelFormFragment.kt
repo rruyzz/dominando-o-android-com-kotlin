@@ -1,4 +1,4 @@
-package dominando.android.fragments.fragments
+package dominando.android.fragments.form
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,18 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import dominando.android.fragments.MemoryRepository
+import dominando.android.fragments.repository.memory.MemoryRepository
 import dominando.android.fragments.R
-import dominando.android.fragments.classes.Hotel
-import dominando.android.fragments.classes.HotelFormPresenter
-import dominando.android.fragments.interfaces.HotelFormView
+import dominando.android.fragments.details.HotelDetailsPresenter
+import dominando.android.fragments.model.Hotel
 import kotlinx.android.synthetic.main.fragment_hotel_form.*
-import java.lang.System.err
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
-class HotelFormFragment : DialogFragment(), HotelFormView {
-    private val presenter = HotelFormPresenter(this, MemoryRepository)
+class HotelFormFragment : DialogFragment(),
+    HotelFormView {
+    private val presenter : HotelFormPresenter by inject { parametersOf(this) }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_hotel_form, container,false)
@@ -79,7 +81,9 @@ class HotelFormFragment : DialogFragment(), HotelFormView {
     }
     fun open(fm: FragmentManager){
         if(fm.findFragmentByTag(DIALOG_TAG) == null){
-            show(fm,DIALOG_TAG)
+            show(fm,
+                DIALOG_TAG
+            )
         }
     }
     interface OnHotelSavedListener{
@@ -89,7 +93,8 @@ class HotelFormFragment : DialogFragment(), HotelFormView {
         private const val DIALOG_TAG = "editDialog"
         private const val EXTRA_HOTEL_ID = "hotel_id"
 
-        fun newInstance(hotelId: Long = 0) = HotelFormFragment().apply{
+        fun newInstance(hotelId: Long = 0) = HotelFormFragment()
+            .apply{
             arguments = Bundle().apply {
                 putLong(EXTRA_HOTEL_ID, hotelId)
             }

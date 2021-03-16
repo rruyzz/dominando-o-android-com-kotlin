@@ -1,6 +1,6 @@
-package dominando.android.fragments.interfaces
+package dominando.android.fragments.details
 
-import dominando.android.fragments.classes.Hotel
+import dominando.android.fragments.model.Hotel
 
 interface HotelDetailsView {
     fun showHotelDetails(hotel: Hotel)

@@ -1,7 +1,6 @@
-package dominando.android.fragments.classes
+package dominando.android.fragments.details
 
-import dominando.android.fragments.interfaces.HotelDetailsView
-import dominando.android.fragments.interfaces.HotelRepository
+import dominando.android.fragments.repository.HotelRepository
 
 class HotelDetailsPresenter(
     private val view: HotelDetailsView,

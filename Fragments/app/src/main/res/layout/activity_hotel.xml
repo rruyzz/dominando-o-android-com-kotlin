@@ -10,7 +10,7 @@
         android:id="@+id/fragmentList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="dominando.android.fragments.fragments.HotelListFragment"
+        android:name="dominando.android.fragments.list.HotelListFragment"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"

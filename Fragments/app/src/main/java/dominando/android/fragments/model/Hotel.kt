@@ -1,4 +1,4 @@
-package dominando.android.fragments.classes
+package dominando.android.fragments.model
 
 data class Hotel(
     var id: Long = 0,

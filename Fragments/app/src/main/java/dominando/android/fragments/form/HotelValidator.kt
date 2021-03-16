@@ -1,7 +1,9 @@
-package dominando.android.fragments.classes
+package dominando.android.fragments.form
+
+import dominando.android.fragments.model.Hotel
 
 class HotelValidator {
-    fun validate(info: Hotel ) = with(info){
+    fun validate(info: Hotel) = with(info){
         checkName(name) && checkAddress(address)
     }
     private fun checkName(name: String) = name.length in 2..20

@@ -1,18 +1,18 @@
-package dominando.android.fragments
+package dominando.android.fragments.common
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import dominando.android.fragments.classes.AboutDialogFragment
-import dominando.android.fragments.classes.Hotel
-import dominando.android.fragments.fragments.HotelDetailFragments
-import dominando.android.fragments.fragments.HotelFormFragment
-import dominando.android.fragments.fragments.HotelListFragment
+import dominando.android.fragments.R
+import dominando.android.fragments.model.Hotel
+import dominando.android.fragments.details.HotelDetailsActivity
+import dominando.android.fragments.details.HotelDetailFragments
+import dominando.android.fragments.form.HotelFormFragment
+import dominando.android.fragments.list.HotelListFragment
 import kotlinx.android.synthetic.main.activity_hotel.*
 
 class MainActivity : AppCompatActivity(),
@@ -94,7 +94,8 @@ class MainActivity : AppCompatActivity(),
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.action_info ->
-                AboutDialogFragment().show(supportFragmentManager, "sobre")
+                AboutDialogFragment()
+                    .show(supportFragmentManager, "sobre")
 //            R.id.action_new ->
 //                HotelFormFragment.newInstance().open(supportFragmentManager)
         }
